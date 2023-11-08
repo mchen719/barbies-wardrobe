@@ -94,7 +94,7 @@ class Car{
 const birkin = new Clothing('Birkin Bag', 'Hermes', 'purple', 'bag', 'lg', 15470 )
 const redBottoms = new Clothing("Red Bottoms", "Christian Louboutin", "white", "shoes", "6", 3000)
 const rental = new Rental(2000, "townhouse", "beach", 50000)
-
+const car = new Car(2024, "Tesla", "Model Y", 50000)
 
 
 // Game Screen
@@ -125,6 +125,15 @@ barbie.render = () => {
         barbie.realEstate.map((item =>{
             return`<li>
             ${barbie.name} has a ${item.sqft} sqft ${item.type} rental property at ${item.location} that is worth $${item.price}</li>`
+        })).join(" ")
+    }</ul>
+    </div>
+
+    <div> <h2>Garage: </h2>
+    <ul>${
+        barbie.garage.map((item =>{
+            return`<li>
+            ${barbie.name} has a ${item.year} ${item.make} ${item.model} that is worth $${item.price}</li>`
         })).join(" ")
     }</ul>
     </div>
@@ -180,6 +189,18 @@ rentalButton.addEventListener("click", ()=>{
     if(barbie.wallet >= rental.price){
         barbie.realEstate.push(rental)
         barbie.wallet -= rental.price
+        barbie.render()
+    }else{
+        alert('Stop trippin you know you aint got it like that');
+    }
+})
+
+const carButton = document.getElementById("car");
+
+carButton.addEventListener("click", () =>{
+    if(barbie.wallet >= car.price){
+        barbie.garage.push(car)
+        barbie.wallet -= car.price
         barbie.render()
     }else{
         alert('Stop trippin you know you aint got it like that');
