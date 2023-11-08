@@ -51,3 +51,7 @@ img {
   position: relative;
 };
 
+#red-bottoms:hover{
+  background-color: red;
+  color: whitesmoke;
+}

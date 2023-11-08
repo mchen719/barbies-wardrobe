@@ -4,6 +4,7 @@ console.log('App is connected');
 const barbie = {
     name: 'Barbie',
     wardrobe: [],
+    realEstate: [],
     wallet: 0
 }
 
@@ -71,9 +72,18 @@ class Clothing {
     }
 }
 
+class Rental {
+    constructor(sqft, type, location, price){
+        this.sqft = sqft
+        this.type = type 
+        this.location = location
+        this.price = price
+    }
+}
+
 const birkin = new Clothing('Birkin Bag', 'Hermes', 'purple', 'bag', 'lg', 15470 )
-
-
+const redBottoms = new Clothing("Red Bottoms", "Christian Louboutin", "white", "shoes", "6", 3000)
+const rental = new Rental(2000, "townhouse", "beach", 50000)
 
 
 
@@ -96,15 +106,22 @@ barbie.render = () => {
             that is worth ${item.price} in size 
             ${item.size} 
             </li>`
-        })).join('')
+        })).join(" ")
+    }</ul>
+    </div>
+
+    <div> <h2>Real Estate Portfolio: </h2>
+    <ul>${
+        barbie.realEstate.map((item =>{
+            return`<li>
+            ${barbie.name} has a ${item.sqft} sqft ${item.type} rental property at ${item.location} that is worth $${item.price}</li>`
+        })).join(" ")
     }</ul>
     </div>
 `;
 }
 
 barbie.render()
-
-
 
 const birkinButton = document.getElementById('birkin');
 
@@ -128,6 +145,33 @@ workButton.addEventListener('click', ()=>{
     barbie.wallet += barbie.career.income; // WE updated the wllet that belongs to barbie so the object was changed
     // the object control the information that is visible to us on the screen
     // I want to re-render the content so that i can see the updated information in the browser
+    if(realEstate.length > 0){
+        barbie.wallet += realEstate.length * 500
+    }
     barbie.render();
 })
 
+const redBottomsButton = document.getElementById("red-bottoms");
+
+redBottomsButton.addEventListener("click", ()=>{
+    if(barbie.wallet >=redBottoms.price){
+        barbie.wardrobe.push(redBottoms); 
+        barbie.wallet -= redBottoms.price;
+        barbie.render()
+    }
+    else{
+        alert('Stop trippin you know you aint got it like that');
+    }
+})
+
+const rentalButton = document.getElementById("rental");
+
+rentalButton.addEventListener("click", ()=>{
+    if(barbie.wallet >= rental.price){
+        barbie.realEstate.push(rental)
+        barbie.wallet -= rental.price
+        barbie.render()
+    }else{
+        alert('Stop trippin you know you aint got it like that');
+    }
+})
