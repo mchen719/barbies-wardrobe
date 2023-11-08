@@ -145,8 +145,8 @@ workButton.addEventListener('click', ()=>{
     barbie.wallet += barbie.career.income; // WE updated the wllet that belongs to barbie so the object was changed
     // the object control the information that is visible to us on the screen
     // I want to re-render the content so that i can see the updated information in the browser
-    if(realEstate.length > 0){
-        barbie.wallet += realEstate.length * 500
+    if(barbie.realEstate.length > 0){
+        barbie.wallet += barbie.realEstate.length * 500
     }
     barbie.render();
 })
