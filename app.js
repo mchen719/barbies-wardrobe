@@ -5,6 +5,7 @@ const barbie = {
     name: 'Barbie',
     wardrobe: [],
     realEstate: [],
+    garage:[],
     wallet: 0
 }
 
@@ -81,6 +82,15 @@ class Rental {
     }
 }
 
+class Car{
+    constructor(year, make, model, price){
+        this.year = year 
+        this.make = make
+        this.model = model
+        this.price = price
+    }
+
+}
 const birkin = new Clothing('Birkin Bag', 'Hermes', 'purple', 'bag', 'lg', 15470 )
 const redBottoms = new Clothing("Red Bottoms", "Christian Louboutin", "white", "shoes", "6", 3000)
 const rental = new Rental(2000, "townhouse", "beach", 50000)
