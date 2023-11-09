@@ -129,7 +129,7 @@ barbie.render = () => {
     }</ul>
     </div>
 
-    <div> <h2>Garage: </h2>
+    <div><h2>Garage: </h2>
     <ul>${
         barbie.garage.map((item =>{
             return`<li>
@@ -166,6 +166,9 @@ workButton.addEventListener('click', ()=>{
     // I want to re-render the content so that i can see the updated information in the browser
     if(barbie.realEstate.length > 0){
         barbie.wallet += barbie.realEstate.length * 500
+    }
+    if (barbie.garage.length > 0){
+        barbie.wallet -= barbie.garage.length * 150
     }
     barbie.render();
 })
@@ -204,5 +207,18 @@ carButton.addEventListener("click", () =>{
         barbie.render()
     }else{
         alert('Stop trippin you know you aint got it like that');
+    }
+})
+
+const sellButton = document.getElementById("sell");
+
+sellButton.addEventListener("click", () =>{
+    if(barbie.wardrobe.length === 0){
+        alert('Stop trippin you know you aint got it like that');
+    }else{
+        let soldPrice = Math.floor((0.7 + Math.random() * 1.3) * barbie.wardrobe[0].price); 
+        barbie.wallet += soldPrice
+        barbie.wardrobe.shift();
+        barbie.render();
     }
 })
